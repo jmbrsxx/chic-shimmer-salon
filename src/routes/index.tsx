@@ -1,26 +1,43 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/Hero";
+import { About } from "@/components/About";
+import { Services } from "@/components/Services";
+import { Reviews } from "@/components/Reviews";
+import { Contact } from "@/components/Contact";
+import { Footer } from "@/components/Footer";
+import { useReveal } from "@/hooks/use-reveal";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Studio Feras — Salão de Beleza em Porto Alegre" },
+      {
+        name: "description",
+        content:
+          "Studio Feras: salão de beleza em Porto Alegre com cabelo, unhas e estética. Atendimento sofisticado no bairro Independência.",
+      },
+      { property: "og:title", content: "Studio Feras — Salão de Beleza" },
+      {
+        property: "og:description",
+        content: "Beleza que brilha em cada detalhe. Agende online no Studio Feras.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  useReveal();
+  return (
+    <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <Navbar />
+      <Hero />
+      <About />
+      <Services />
+      <Reviews />
+      <Contact />
+      <Footer />
+    </main>
+  );
 }
